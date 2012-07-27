@@ -11,6 +11,8 @@ Setup
 Usage
 ----------------
 - Make your changes in paper\_body.md (do not add an introduction section).
-- ```make md```
+- Modify paper.bib, add figs, etcetera
+- Compile to pdf with ```make md``` (also runs bibtex)
+- (optional) Get rid of excess files with ```make clean```
 
-Note, since pdflatex is used, the resulting pdf may not be acceptable for final publications. 
+Note, pdflatex is used, so the resulting pdf may not be acceptable for final publications. 
