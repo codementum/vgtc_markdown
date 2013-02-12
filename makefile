@@ -1,17 +1,17 @@
-MARKDOWNFILE = paper_body.md
-MARKDOWNOUTPUT = paper_body.tex
-MAINTEXFILE = $(MARKDOWNFILE:_body.md=.tex)
-BIBFILES = $(MAINTEXFILE:.dvi=.bib)
-AUXFILE = $(MAINTEXFILE:.tex=)
+markdown = body.md
+tex = $(markdown:.md=.tex)
+head = vgtc.tex
+bib = $(head:.tex=.bib)
+aux = $(head:.tex=.aux)
 
 md: clean md2tex pdf_bibtex
 
 md2tex: 
-				pandoc --from markdown --to latex -o $(MARKDOWNOUTPUT) $(MARKDOWNFILE)	
+				pandoc --from markdown --to latex -o $(tex) $(markdown)	
 
 pdf_bibtex: 
-				pdflatex $(MAINTEXFILE) && bibtex $(AUXFILE) && pdflatex $(MAINTEXFILE) && pdflatex $(MAINTEXFILE)
+				pdflatex $(head) && bibtex $(aux) && pdflatex $(head) && pdflatex $(head)
 
 clean: 
 				rm -f *.aux *.log *.bbl *.blg *.brf *.cb *.ind *.idx *.ilg	\
-				*.inx *.toc *.out $(DVIFILES) *~
+				*.inx *.toc *.out $(tex) *~
